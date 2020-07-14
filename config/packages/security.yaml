@@ -1,0 +1,28 @@
+security:
+    providers:
+        chain_provider:
+            chain:
+                providers: [in_memory]
+        in_memory:
+            memory:
+                users:
+                    admin: { password: '%env(ADMIN_PASSWORD)%' , roles: 'ROLE_ADMIN' }
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            provider: chain_provider
+            anonymous: true
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path: logout
+
+    access_control:

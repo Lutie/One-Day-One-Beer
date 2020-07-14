@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block title %}{{ app_title }}{% endblock %}</title>
+
+		{% block stylesheets %}
+            {# Bootstrap v4.0.0 #}
+            <link rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                crossorigin="anonymous">
+
+            {# FontAwesome #}
+            <link rel="stylesheet"
+                href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+                integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+                crossorigin="anonymous">
+
+            {# DataTable #}
+            <link rel="stylesheet"
+                href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+                crossorigin="anonymous">
+
+            {# App Style #}
+            <link rel="stylesheet" type="text/css"
+                href="{{ asset('css/app-style.css') }}">
+		{% endblock %}
+    </head>
+    <body>
+        {% include('_menu.html.twig') %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include('_nav.html.twig') %}
+        {% endif %}
+
+        <div class="container page-content mt-5">
+            {% include('_flash.html.twig') %}
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}
+            {# Bootstrap v4.0.0 #}
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+            {# DataTable #}
+            <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
+                crossorigin="anonymous"></script>
+
+            {# App #}
+            <script language="JavaScript" type="text/javascript"
+                src="{{ asset('js/app.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if error %}
+        <p class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </p>
+    {% endif %}
+
+    <h1> Connexion </h1>
+
+    <legend class="mb-4"></legend>
+
+    <form method="post">
+
+        <div class="row" style="margin: auto">
+            <div class="form-group col-4 offset-4">
+                <label class="control-label" for="username">Identifiant</label>
+                <input class="form-control" id="username" name="_username" value="{{ username }}">
+            </div>
+        </div>
+
+        <div class="row" style="margin: auto">
+            <div class="form-group col-4 offset-4">
+                <label class="control-label" for="password">Mot de passe</label>
+                <input class="form-control" type="password" id="password" name="_password">
+            </div>
+        </div>
+
+        <div class="row mb-3" style="margin: auto">
+            <button type="submit" class="btn btn-primary offset-5 col-2">Connexion</button>
+        </div>
+
+    </form>
+{% endblock %}
