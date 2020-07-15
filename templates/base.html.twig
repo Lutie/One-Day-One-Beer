@@ -30,13 +30,10 @@
 		{% endblock %}
     </head>
     <body>
-        {% include('_menu.html.twig') %}
+        {% include('_header.html.twig') %}
+        {% include('_nav.html.twig') %}
 
-        {% if is_granted('ROLE_ADMIN') %}
-            {% include('_nav.html.twig') %}
-        {% endif %}
-
-        <div class="container page-content mt-5">
+        <div class="container page-content mt-2">
             {% include('_flash.html.twig') %}
             {% block body %}{% endblock %}
         </div>

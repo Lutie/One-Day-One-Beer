@@ -5,3 +5,5 @@ twig:
     exception_controller: null
     globals:
         app_title: '%env(APP_TITLE)%'
+        app_csrf_token: '%env(SECURITY_TOKEN)%'
+    form_themes: ['bootstrap_4_layout.html.twig']
