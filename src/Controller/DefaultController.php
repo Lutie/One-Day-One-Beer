@@ -54,7 +54,8 @@ class DefaultController extends UtilsController
 		}
 
 		return $this->render('pages/submit.html.twig', [
-			'form' => $form->createView()
+			'form' => $form->createView(),
+			'task' => 'submit'
 		]);
 	}
 

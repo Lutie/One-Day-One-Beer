@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Picture;
+use App\Type\PictureType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -51,5 +52,34 @@ class AdminController extends UtilsController
     $em->flush();
     $this->addFlash('success', 'The picture has been deleted successfully.');
     return $this->redirectToRoute('admin');
+  }
+
+  /**
+   * @Route("/picture-update/{id}", name="picture-update", requirements={"id":"\d+"})
+   */
+  public function updatePicture(Request $request, Picture $picture){
+    $this->isTokenValid($request->query->get('token'));
+		$form = $this->createForm(PictureType::class, $picture);
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+				$em = $this->em();
+				$em->persist($picture);
+				$em->flush();
+
+				if($picture->getName()) {
+					$this->addFlash('success', 'The picture "' . $picture->getName() . '" has been updated successfully !');
+				} else {
+					$this->addFlash('success', 'The picture has been updated successfully !');
+				}
+
+				return $this->redirectToRoute('index');
+		}
+
+		return $this->render('pages/submit.html.twig', [
+			'form' => $form->createView(),
+      'task' => 'update',
+      'picture' => $picture
+    ]);
   }
 }

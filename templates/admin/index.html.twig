@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <legend>Administration</legend>
+    <legend>All pictures</legend>
 
     <div class="table-responsive table-hover">
         <table id="picture-list" class="table table-bordered table-striped">
@@ -14,6 +14,7 @@
                 <td class="col-xs-1 text-center sorter-false filter-false">Date</td>
                 <td class="col-xs-1 text-center sorter-false filter-false">Description</td>
                 <td class="col-xs-1 text-center">State</td>
+                <td class="col-xs-1 text-center">Update</td>
                 <td class="col-xs-1 text-center">Delete</td>
             </thead>
 
@@ -36,8 +37,12 @@
                                 class="btn btn-primary btn-block">Invalidate</a>
                             {% else %}
                                 <a href="{{ path('picture-activate', { id:picture.id, token:app_token }) }}"
-                                class="btn btn-primary btn-block">Validate</a>
+                                class="btn btn-success btn-block">Validate</a>
                             {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('picture-update', { id:picture.id, token:app_token }) }}"
+                            class="btn btn-warning btn-block">Update</a>
                         </td>
                         <td class="text-center">
                             <a href="{{ path('picture-delete', { id:picture.id, token:app_token }) }}"
