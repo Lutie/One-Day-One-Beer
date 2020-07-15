@@ -2,12 +2,23 @@
 
 {% block body %}
 
-    <legend class="mb-4">Submit Picture</legend>
+    <legend class="mb-4">{{ task|capitalize }} Picture</legend>
 
-    <p>(*) : Those fields are required.<p>
+    {% if task == 'update' %}
+        <div class="offset-3 col-6 my-3">
+            <img class="update-picture" alt="picture" src="{{ asset('uploads/pictures/' ~ picture.path ) }}">
+        </div>
+    {% endif %}
 
     {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-    <button type="submit" class="btn btn-primary offset-5 col-2">Submit</button>
+    <p class="required">(*) : Those fields are required.<p>
+    <div class={{ task == 'update' ? 'hidden' : '' }}>{{ form_row(form.file_upload) }}</div>
+                <span id="picture_file_icon" class="hidden">
+                    <i id="picture_file_clear" class="clear-button fas fa-window-close"></i>
+                    <i class="fas fa-file-alt fa-2x"></i>
+                    <span id="picture_file_name"></span>
+                </span>
+    <button type="submit" class="btn btn-primary offset-5 col-2">{{ task|capitalize }}</button>
     {{ form_end(form) }}
 
 {% endblock %}

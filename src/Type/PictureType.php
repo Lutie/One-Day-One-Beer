@@ -18,13 +18,22 @@ class PictureType extends AbstractType
           'label' => 'Your picture (*)',
       ])
       ->add('name', TextType::class, [
-          'label' => 'Name for this picture (*)',
+          'label' => 'Please choose a name or catch phrase for this picture (*)',
+          'attr' => [
+              'placeholder' => 'Something short like "Ouh, need that one badly !"',
+          ],
       ])
       ->add('author', TextType::class, [
-          'label' => 'You can tell us who you are, made up names are welcome !',
+          'label' => 'Tell us who you are, made up names are welcome ! (*)',
+          'attr' => [
+              'placeholder' => 'But try to keep the same each time if you want us to remember you ;)',
+          ],
       ])
       ->add('description', TextareaType::class, [
           'label' => 'Gives us a description if you want.',
+          'attr' => [
+              'placeholder' => 'Oh well we have no idea what you can bring here, surprise us !',
+          ],
       ]);
   }
 }

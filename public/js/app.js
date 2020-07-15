@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // Permet d'activer DataTable pour les tables séléctionnées
+    // Datatable configurations
     var dataTable = $('#picture-list');
     dataTable.DataTable({
         'aoColumnDefs': [{
@@ -36,10 +36,15 @@ $(document).ready(function () {
         }
     });
 
-    // Permet d'inclure une pop up de validation dans certains liens (comme ceux de suppression par exemple)
+    // Display a confirmation pop up when a sensitive aciton is about to be triggered
     $('.confirmation-required').click(function () {
         var text = $(this).data('text')
         return window.confirm("Are you sure you want to proceed with this action ? \n" + text)
     });
 
+    // Display an icon and the name of a picture when uploaded
+    $('#picture_file_upload').change(function () {
+        var nextSibling = this.nextElementSibling
+        nextSibling.innerText = this.files[0] ? this.files[0].name : ''
+    });
 });
