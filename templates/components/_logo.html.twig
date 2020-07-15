@@ -1,0 +1,9 @@
+{% if is_granted('ROLE_ADMIN') %}
+  <a href="{{ path('admin') }}" class="ml-5">
+      <img class="logo" alt="logo" src="{{ asset('img/logo.png') }}">
+  </a>
+{% else %}
+  <a href="{{ path('index') }}" class="ml-5">
+      <img class="logo" alt="logo" src="{{ asset('img/logo.png') }}">
+  </a>
+{% endif %}
