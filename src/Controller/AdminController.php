@@ -26,19 +26,37 @@ class AdminController extends UtilsController
   }
 
   /**
-   * @Route("/picture-activate/{id}", name="picture-activate", requirements={"id":"\d+"})
+   * @Route("/picture-activate", name="picture-activate")
    */
-  public function activatePicture(Request $request, Picture $picture){
-    $this->isTokenValid($request->query->get('token'));
-    $picture->setValidated(!$picture->getValidated());
+  public function activatePicture(Request $request){
+    $this->isTokenValid($request->request->get('datepickerToken'));
     $em = $this->em();
+    $picture = $em->getRepository(Picture::class)->findOneBy(['id' => $request->request->get('pictureID')]);
+    if($picture){
+      $date = $request->request->get('datepicker');
+      date_default_timezone_set("Europe/Paris");
+      \DateTime::createfromformat('m-d-Y', $date);
+      $dateTime = new \DateTime($date);
+      $picture->setDay($dateTime);
+      $em->persist($picture);
+      $em->flush();
+      $this->addFlash('success', 'A date has been set for the picture successfully.');
+    } else {
+      $this->addFlash('warning', 'The picture has not been found...');
+    }
+    return $this->redirectToRoute('admin');
+  }
+
+  /**
+   * @Route("/picture-desactivate/{id}", name="picture-desactivate", requirements={"id":"\d+"})
+   */
+  public function desactivatePicture(Request $request, Picture $picture){
+    $this->isTokenValid($request->query->get('token'));
+    $em = $this->em();
+    $picture->setDay(null);
     $em->persist($picture);
     $em->flush();
-    if($picture->getValidated()) {
-      $this->addFlash('success', 'The picture has been validated successfully.');
-    } else {
-      $this->addFlash('success', 'The picture has been devalidated successfully.');
-    }
+    $this->addFlash('success', 'The date has been unset for the picture successfully.');
     return $this->redirectToRoute('admin');
   }
 
@@ -82,4 +100,15 @@ class AdminController extends UtilsController
       'picture' => $picture
     ]);
   }
+
+	/**
+	 * @Route("/all", name="all")
+   * Use this for debug
+	 */
+	public function test(){
+		$em = $this->em();
+		$pictures = $em->getRepository(Picture::class)->findAll();
+		dump($pictures);
+		exit;
+	}
 }
