@@ -10,7 +10,6 @@ trait NameTrait
 
     /**
      * @ORM\Column(type="string", length=100, nullable=false)
-     * @Assert\NotNull()
      * @Assert\Type("string")
      * @Assert\Length(min=10, max=100)
      */

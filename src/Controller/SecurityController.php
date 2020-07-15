@@ -13,12 +13,12 @@ class SecurityController extends AbstractController
    */
   public function __invoke(AuthenticationUtils $authenticationUtils)
   {
-      $error = $authenticationUtils->getLastAuthenticationError();
-      $username = $authenticationUtils->getLastUsername();
+    $error = $authenticationUtils->getLastAuthenticationError();
+    $username = $authenticationUtils->getLastUsername();
 
-      return $this->render('pages/login.html.twig', [
-          'error' => $error,
-          'username' => $username,
-      ]);
+    return $this->render('pages/login.html.twig', [
+        'error' => $error,
+        'username' => $username,
+    ]);
   }
 }

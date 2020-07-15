@@ -2,6 +2,75 @@
 
 {% block body %}
 
-    <legend>Section d'Administration</legend>
+    <legend>Administration</legend>
+
+    <div class="table-responsive table-hover">
+        <table id="picture-list" class="table table-bordered table-striped">
+
+            <thead>
+                <td class="col-xs-1 text-center sorter-false filter-false">Picture</td>
+                <td class="col-xs-1 text-center sorter-false filter-false">Name</td>
+                <td class="col-xs-1 text-center">Author</td>
+                <td class="col-xs-1 text-center sorter-false filter-false">Date</td>
+                <td class="col-xs-1 text-center sorter-false filter-false">Description</td>
+                <td class="col-xs-1 text-center">State</td>
+                <td class="col-xs-1 text-center">Delete</td>
+            </thead>
+
+            <tbody>
+                {% set app_token = csrf_token(app_csrf_token) %}
+                {% for picture in pictures %}
+                    <tr>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target={{ "#pictureModal" ~ picture.id }}>
+                                <i class="fas fa-image fa-2x"></i>
+                            </button>
+                        </td>
+                        <td class="text-center">{{ picture.name }}</td>
+                        <td class="text-center">{{ picture.author }}</td>
+                        <td class="text-center" data-sort="{{ picture.date|date("Ymd") }}">{{ picture.date|date("d/m/Y") }}</td>
+                        <td class="text-center">{{ picture.description }}</td>
+                        <td class="text-center">
+                            {% if picture.validated %}
+                                <a href="{{ path('picture-activate', { id:picture.id, token:app_token }) }}"
+                                class="btn btn-primary btn-block">Invalidate</a>
+                            {% else %}
+                                <a href="{{ path('picture-activate', { id:picture.id, token:app_token }) }}"
+                                class="btn btn-primary btn-block">Validate</a>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('picture-delete', { id:picture.id, token:app_token }) }}"
+                            class="btn btn-danger btn-block confirmation-required" data-text="The picture will be deleted, are you sure ?">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% for picture in pictures %}
+            <div class="modal fade" id={{ "pictureModal" ~ picture.id }} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="modal-picture" alt="picture" src="{{ asset('uploads/pictures/' ~ picture.path ) }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            {% if not picture.validated %}
+                                <a href="{{ path('picture-activate', { id:picture.id, token:app_token }) }}"
+                                class="btn btn-primary">Validate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
