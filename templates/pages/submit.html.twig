@@ -7,7 +7,6 @@
     <p>(*) : Those fields are required.<p>
 
     {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('1D1B_SECURITY_TOKEN') }}">
     <button type="submit" class="btn btn-primary offset-5 col-2">Submit</button>
     {{ form_end(form) }}
 
