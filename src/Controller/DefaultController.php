@@ -20,7 +20,7 @@ class DefaultController extends UtilsController
     $today->setTime(0, 0);
 		$pictures = $em->getRepository(Picture::class)->findBy(['day' => $today]);
 		if(sizeof($pictures) == 0) {
-			$pictures = $em->getRepository(Picture::class)->findAll();
+			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		}
 		$offset = array_rand($pictures);
 

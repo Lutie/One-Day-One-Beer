@@ -102,12 +102,13 @@ class AdminController extends UtilsController
   }
 
 	/**
-	 * @Route("/all", name="all")
+	 * @Route("/admin/all", name="all")
    * Use this for debug
 	 */
 	public function test(){
 		$em = $this->em();
 		$pictures = $em->getRepository(Picture::class)->findAll();
+    $pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		dump($pictures);
 		exit;
 	}
