@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 
+@font-face {
+    font-family: helenapu;
+    src: url("../webfonts/Helenapu.otf");
+}
+
 legend { 
     width: 70%; border-bottom: #868686 1px solid; margin: 0 auto 24px;
 }
@@ -30,6 +35,11 @@ legend {
 
 .custom-file-label {
     overflow: hidden;
+}
+
+.about-text {
+    font-family: helenapu;
+    font-size: 24px;
 }
 
 ::placeholder {
