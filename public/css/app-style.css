@@ -1,12 +1,27 @@
-@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
-
 @font-face {
     font-family: helenapu;
     src: url("../webfonts/Helenapu.otf");
 }
 
+body {
+    color: #EEEE;
+    background: no-repeat center url("../img/background.jpg");
+    background-size: cover;
+}
+
 legend { 
     width: 70%; border-bottom: #868686 1px solid; margin: 0 auto 24px;
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 200;
+    font-style: italic;
+    color: #fff;
+    padding: 4rem 6rem 5.5rem;
+    border: 0.4rem solid #fff;
+    border-radius: 2rem;
+    text-transform: uppercase;
 }
 
 .logo {
@@ -16,6 +31,10 @@ legend {
 .title {
     font-family: 'Exo 2', sans-serif;
     font-size: 48px;
+}
+
+.page {
+    min-height: 480px;
 }
 
 .modal-picture, .delay-picture, .update-picture {
@@ -55,10 +74,6 @@ legend {
     color: white;
     width: 100%;
     background-color: #313131;
-}
-
-.footer-infos {
-    height: 160px;
 }
 
 .footer-copyright {

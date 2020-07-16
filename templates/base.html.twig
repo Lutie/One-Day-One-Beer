@@ -27,6 +27,10 @@
             {# Gijgo (Datepicker) #}
             <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+            {# Animations #}
+            <link rel="stylesheet" type="text/css"
+                href="{{ asset('css/animations.css') }}">
+
             {# App Style #}
             <link rel="stylesheet" type="text/css"
                 href="{{ asset('css/app-style.css') }}">
@@ -36,7 +40,7 @@
         {% include('_header.html.twig') %}
         {% include('_nav.html.twig') %}
 
-        <div class="container page-content mt-2">
+        <div class="page container page-content mt-2">
             {% include('_flash.html.twig') %}
             {% block body %}{% endblock %}
         </div>
