@@ -31,6 +31,7 @@ Their is a lot of ways to start the server but i will guide you on the method i 
 Since installation depends on your OS i will give you all the links needed to proceed.
 
 First you need to install composer : [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 Then you need to install symfony cli : [https://symfony.com/download/](https://symfony.com/download)
 
 Once this is done let's enter those instruction in your terminal (from where you clone the project) :
