@@ -17,12 +17,12 @@
 
   {{offset}}
   {% if offset < maxoffset %}
-    <span class="mx-2">,</span>
   {% endif %}
 
   {% for i in 1..5 %}
     {% set value = offset + i %}
     {% if value <= maxoffset %}
+      <span class="mx-2">,</span>
       <a href="{{ path(path, { offset:value }) }}">{{value}}</a>
     {% endif %}
   {% endfor %}

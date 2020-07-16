@@ -4,25 +4,29 @@
 
     <legend>Today's Beer</legend>
 
-    <div class="row">
-        {% if picture.name %}
+    {% if picture != null %}
+        <div class="row">
+            {% if picture.name %}
+                <div class="offset-3 col-6">
+                    <h3 class="delay-picture-ttl">{{ picture.name }}<h3>
+                </div>
+            {% endif %}
             <div class="offset-3 col-6">
-                <h3 class="delay-picture-ttl">{{ picture.name }}<h3>
+                <img class="delay-picture" alt="picture" src="{{ asset('uploads/pictures/' ~ picture.path ) }}">
             </div>
-        {% endif %}
-        <div class="offset-3 col-6">
-            <img class="delay-picture" alt="picture" src="{{ asset('uploads/pictures/' ~ picture.path ) }}">
+            {% if picture.description %}
+                <div class="offset-3 col-6">
+                    <p class="delay-picture-desc">"{{ picture.description }}"<p>
+                </div>
+            {% endif %}
+            {% if picture.author %}
+                <div class="offset-3 col-6">
+                    <p class="delay-picture-author">Proposed by <b>{{ picture.author }}</b> <span class="info">(submitted on {{ picture.date|date("d/m/Y")  }})</span><p>
+                </div>
+            {% endif %}
         </div>
-        {% if picture.description %}
-            <div class="offset-3 col-6">
-                <p class="delay-picture-desc">"{{ picture.description }}"<p>
-            </div>
-        {% endif %}
-        {% if picture.author %}
-            <div class="offset-3 col-6">
-                <p class="delay-picture-author">Proposed by <b>{{ picture.author }}</b> <span class="info">(submitted on {{ picture.date|date("d/m/Y")  }})</span><p>
-            </div>
-        {% endif %}
-    </div>
+    {% else %}
+      {% include('/components/_no-picture.html.twig') %}
+    {% endif %}
 
 {% endblock %}

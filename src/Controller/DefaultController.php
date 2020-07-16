@@ -20,10 +20,9 @@ class DefaultController extends UtilsController
 		if(sizeof($pictures) == 0) {
 			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		}
-		$offset = array_rand($pictures);
 
 		return $this->render('pages/index.html.twig', [
-			'picture' => $pictures[$offset]
+			'picture' => sizeof($pictures) > 0 ? $pictures[$offset] : null
 		]);
 	}
 
@@ -73,12 +72,8 @@ class DefaultController extends UtilsController
 			$offset = $maxoffset;
 		}
 
-		dump($offset);
-		dump($maxoffset);
-		dump(count($pictures));
-
 		return $this->render('pages/previous.html.twig', [
-			'picture' => $pictures[$offset],
+			'picture' => sizeof($pictures) > 0 ? $pictures[$offset] : null,
 			'offset' => $offset,
 			'maxoffset' => $maxoffset
 		]);
