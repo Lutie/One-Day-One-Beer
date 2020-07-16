@@ -73,9 +73,16 @@ class DefaultController extends UtilsController
 	}
 
 	/**
-	 * @Route("/about-us", name="about")
+	 * @Route("/about", name="about")
 	 */
 	public function about(){
+		return $this->render('pages/about.html.twig');
+	}
+
+	/**
+	 * @Route("/about-us", name="about-us")
+	 */
+	public function aboutUs(){
 		return $this->render('pages/about_us.html.twig');
 	}
 }
