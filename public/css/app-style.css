@@ -46,11 +46,24 @@ legend {
     margin: 4px 0;
 }
 
-::placeholder {
-    color: gray;
-    opacity: 0.5;
-}
-
 .previous-day {
     font-size: 16px;
+}
+
+.footer {
+    margin-top: 64px;
+    color: white;
+    width: 100%;
+    background-color: #313131;
+}
+
+.footer-infos {
+    height: 160px;
+}
+
+.footer-copyright {
+    width: 100%;
+    background-color: #222222;
+    font-size: 12px;
+    padding: 16px 0 24px;
 }
