@@ -22,11 +22,11 @@ git clone https://github.com/Lutie/One-Day-One-Beer.git
 
 ## Configurations
 
-* You can change the configurations in the `.ex.env` file, especially those lines :
+Well there is not a lot of things to configure for the moment, but:
+
+* You can change the configurations in the `.ex.env` file, especially that line :
 ```
-ADMIN_PASSWORD=example
-APP_TITLE='One Day One Beer'
-SECURITY_TOKEN=CHOOSE_A_SECURITY_TOKEN_PLEASE
+ADMIN_PASSWORD=
 ```
 * Then you have to rename it into `.env`.
 
