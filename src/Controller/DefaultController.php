@@ -16,21 +16,21 @@ class DefaultController extends UtilsController
 	 */
 	public function __invoke(int $offset = 0){
 		$em = $this->em();
-    $today = $this->localDateTime();
+		$today = $this->localDateTime();
 		$pictures = $em->getRepository(Picture::class)->findBy(['day' => $today]);
 		$previous = $em->getRepository(Picture::class)->findPreviousOne();
+		$picToDisplay = (sizeof($previous) != 0);
 
-		$maxoffset = count($previous) - 1;
+		$maxoffset = count($previous) > 0 ? count($previous) - 1 : 0;
 		if($offset > $maxoffset){
 			$offset = $maxoffset;
 		}
-
 		if(sizeof($pictures) == 0) {
 			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		}
 
 		return $this->render('pages/index.html.twig', [
-			'picture' => $previous[$offset],
+			'picture' => $picToDisplay ? $previous[$offset] : null,
 			'offset' => $offset,
 			'maxoffset' => $maxoffset
 		]);
