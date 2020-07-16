@@ -4,7 +4,11 @@
 
 {% block body %}
 
-    <legend>Previous Beer <span class="previous-day">(or Beer Gallery, as you prefer...)</span></legend>
+    {% if offset > 0 %}
+        <legend>Previous Beer <span class="previous-day">(of the Day but this one)</span></legend>
+    {% else %}
+        <legend>Beer of the Day</legend>
+    {% endif %}
 
     {% if picture != null %}
       <div class="row">
@@ -19,7 +23,7 @@
           <div class="offset-2 col-1">
             {% if previous < offset %}
               <a href="{{ path('picture-gallery', { offset:previous }) }}" class="nav-link">
-                <i class="fas fa-arrow-left fa-2x"></i></a>
+                <i class="fas neon-icon fa-arrow-left fa-2x"></i></a>
             {% endif %}
           </div>
           {% if picture.name %}
@@ -30,7 +34,7 @@
           <div class="col-1">
             {% if (next > offset) and (next <= maxoffset) %}
               <a href="{{ path('picture-gallery', { offset:next }) }}" class="nav-link">
-                <i class="fas fa-arrow-right fa-2x"></i></a>
+                <i class="fas neon-icon fa-arrow-right fa-2x"></i></a>
             {% endif %}
           </div>
       </div>
