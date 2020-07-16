@@ -21,6 +21,14 @@ class UtilsController extends AbstractController
     return $em = $this->getDoctrine()->getManager();
   }
 
+  public function localDateTime()
+  {
+		date_default_timezone_set("Europe/Paris");
+    $today = new \DateTime();
+    $today->setTime(0, 0);
+    return $today;
+  }
+
   public function generateUniqueFileName()
   {
     $date = \DateTime::createFromFormat('U.u', microtime(TRUE));
