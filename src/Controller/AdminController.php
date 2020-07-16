@@ -37,10 +37,18 @@ class AdminController extends UtilsController
       date_default_timezone_set("Europe/Paris");
       \DateTime::createfromformat('m-d-Y', $date);
       $dateTime = new \DateTime($date);
+      $oldPictures = $em->getRepository(Picture::class)->findBy(['day' => $dateTime]);
       $picture->setDay($dateTime);
       $em->persist($picture);
+      foreach ($oldPictures as $OldPicture){
+        $em->persist($OldPicture);
+        $OldPicture->setDay(null);      
+      }
       $em->flush();
       $this->addFlash('success', 'A date has been set for the picture successfully.');
+      if(count($oldPictures) > 0){
+        $this->addFlash('warning', 'Another picture was set to this day and is now unassigned.');  
+      }
     } else {
       $this->addFlash('warning', 'The picture has not been found...');
     }

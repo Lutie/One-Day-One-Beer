@@ -6,10 +6,6 @@
       <a href="{{ path('picture-submit') }}" class="nav-link">
         <i class="fas fa-beer fa-2x"></i> Submit a Picture</a>
     </li>
-    <li class="nav-item {{ route ends with 'picture-gallery' ? 'active' }}">
-      <a href="{{ path('picture-gallery', { offset:0 }) }}" class="nav-link">
-        <i class="fas fa-beer fa-2x"></i> Previous Pictures</a>
-    </li>
     <li class="nav-item {{ route ends with 'about' ? 'active' }}">
       <a href="{{ path('about') }}" class="nav-link">
         <i class="fas fa-user fa-2x"></i> About Us</a>
