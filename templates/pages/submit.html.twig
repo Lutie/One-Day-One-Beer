@@ -11,7 +11,7 @@
     {% endif %}
 
     {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-    <p class="required">(*) : Those fields are required.<p>
+    <p class="infos">(*) : Those fields are required.<p>
     <div class={{ task == 'update' ? 'hidden' : '' }}>{{ form_row(form.file_upload) }}</div>
                 <span id="picture_file_icon" class="hidden">
                     <i id="picture_file_clear" class="clear-button fas fa-window-close"></i>

@@ -15,7 +15,13 @@ class DefaultController extends UtilsController
 	 */
 	public function __invoke(){
 		$em = $this->em();
-		$pictures = $em->getRepository(Picture::class)->findAll();
+		date_default_timezone_set("Europe/Paris");
+    $today = new \DateTime();
+    $today->setTime(0, 0);
+		$pictures = $em->getRepository(Picture::class)->findBy(['day' => $today]);
+		if(sizeof($pictures) == 0) {
+			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
+		}
 		$offset = array_rand($pictures);
 
 		return $this->render('pages/index.html.twig', [

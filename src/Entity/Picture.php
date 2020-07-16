@@ -44,12 +44,13 @@ class Picture
     private $path;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $validated = false;
+    private $day = null;
 
     public function __construct()
     {
+		date_default_timezone_set("Europe/Paris");
         $this->date = new \DateTime();
         $this->validate = false;
     }
@@ -107,21 +108,19 @@ class Picture
     }
 
     /**
-     * @param boolean
+     * @return object \DateTime
      */
-    public function setValidated($validated)
+    public function getDay()
     {
-        $this->validated = $validated;
-
-        return $this;
+        return $this->day;
     }
 
     /**
-     * @return boolean
+     * @param \DateTime $day
      */
-    public function getValidated()
+    public function setDay($day): void
     {
-        return $this->validated;
+        $this->day = $day;
     }
 
 }

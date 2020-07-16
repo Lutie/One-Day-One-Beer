@@ -42,9 +42,20 @@ $(document).ready(function () {
         return window.confirm("Are you sure you want to proceed with this action ? \n" + text)
     });
 
+    // Switch the picture ID value for the calendar when "choose day" is clicked
+    $('.choose-day').click(function () {
+        document.getElementById("pictureID").value = $(this).data('id')
+        document.getElementById("datepicker").value = ''
+    });
+
     // Display an icon and the name of a picture when uploaded
     $('#picture_file_upload').change(function () {
         var nextSibling = this.nextElementSibling
         nextSibling.innerText = this.files[0] ? this.files[0].name : ''
+    });
+
+    // Enable Bootstrap 4 Datepicker
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
     });
 });

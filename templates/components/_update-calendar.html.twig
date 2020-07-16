@@ -1,0 +1,26 @@
+{% set app_token = csrf_token(app_csrf_token) %}
+
+<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="calendarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="calendarModalLabel">Choose a date</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="calendarForm" method="post" action="{{ path('picture-activate') }}" target="_self">
+                <div class="modal-body">
+                    <p class="infos">Note : If multiple pictures are set for the same day then they will be displayed randomly between them.<p>
+                    <input id="datepicker" name="datepicker" width="50%" />
+                    <input id="pictureID" name="pictureID" type="hidden" value="1" />
+                    <input id="datepickerToken" name="datepickerToken" type="hidden" value={{app_token}} />
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
