@@ -42,7 +42,15 @@ legend {
     font-size: 24px;
 }
 
+.pagination-div {
+    margin: 4px 0;
+}
+
 ::placeholder {
     color: gray;
     opacity: 0.5;
+}
+
+.previous-day {
+    font-size: 16px;
 }

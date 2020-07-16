@@ -108,7 +108,6 @@ class AdminController extends UtilsController
 	public function test(){
 		$em = $this->em();
 		$pictures = $em->getRepository(Picture::class)->findAll();
-    $pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		dump($pictures);
 		exit;
 	}

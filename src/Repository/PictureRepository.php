@@ -20,4 +20,23 @@ class PictureRepository extends EntityRepository
       ->getResult();
   }
 
+  public function findPreviousOne()
+  {
+    $qb = $this->createQueryBuilder('pictures');
+		date_default_timezone_set("Europe/Paris");
+    $today = new \DateTime();
+    $today->setTime(0, 0);
+
+    $qb
+      ->select('pictures')
+      ->where('pictures.day is not NULL')
+      ->andWhere('pictures.day <= :today')
+      ->setParameter('today', $today)
+      ->orderBy('pictures.day', 'DESC');
+    
+      return $qb
+      ->getQuery()
+      ->getResult();
+  }
+
 }
