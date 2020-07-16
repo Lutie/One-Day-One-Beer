@@ -20,7 +20,7 @@
         {% endif %}
         {% if picture.author %}
             <div class="offset-3 col-6">
-                <p class="delay-picture-author">Proposed by <b>{{ picture.author }}</b><p>
+                <p class="delay-picture-author">Proposed by <b>{{ picture.author }}</b> <span class="info">(submitted on {{ picture.date|date("d/m/Y")  }})</span><p>
             </div>
         {% endif %}
     </div>

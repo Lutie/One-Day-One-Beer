@@ -31,7 +31,8 @@ class PictureRepository extends EntityRepository
       ->select('pictures')
       ->where('pictures.day is not NULL')
       ->andWhere('pictures.day <= :today')
-      ->setParameter('today', $today);
+      ->setParameter('today', $today)
+      ->orderBy('pictures.day', 'DESC');
     
       return $qb
       ->getQuery()

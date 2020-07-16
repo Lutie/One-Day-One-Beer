@@ -28,7 +28,7 @@ class DefaultController extends UtilsController
 	}
 
 	/**
-	 * @Route("/submit", name="submit")
+	 * @Route("/picture-submit", name="picture-submit")
 	 */
 	public function submit(Request $request){
 		$picture = new Picture();
@@ -60,6 +60,27 @@ class DefaultController extends UtilsController
 		return $this->render('pages/submit.html.twig', [
 			'form' => $form->createView(),
 			'task' => 'submit'
+		]);
+	}
+	/**
+   * @Route("/picture-gallery/{offset}", name="picture-gallery", requirements={"offset":"\d+"})
+	 */
+	public function gallery(int $offset){
+		$em = $this->em();
+		$pictures = $em->getRepository(Picture::class)->findPreviousOne();
+		$maxoffset = count($pictures) - 1;
+		if($offset > $maxoffset){
+			$offset = $maxoffset;
+		}
+
+		dump($offset);
+		dump($maxoffset);
+		dump(count($pictures));
+
+		return $this->render('pages/previous.html.twig', [
+			'picture' => $pictures[$offset],
+			'offset' => $offset,
+			'maxoffset' => $maxoffset
 		]);
 	}
 
