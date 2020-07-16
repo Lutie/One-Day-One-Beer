@@ -20,6 +20,7 @@ class DefaultController extends UtilsController
 		if(sizeof($pictures) == 0) {
 			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		}
+		$offset = sizeof($pictures) > 0 ? array_rand($pictures) : 0;
 
 		return $this->render('pages/index.html.twig', [
 			'picture' => sizeof($pictures) > 0 ? $pictures[$offset] : null
