@@ -12,18 +12,27 @@ class DefaultController extends UtilsController
 {
 	/**
 	 * @Route("/", name="index")
+   * @Route("/{offset}", name="picture-gallery", requirements={"offset":"\d+"})
 	 */
-	public function __invoke(){
+	public function __invoke(int $offset = 0){
 		$em = $this->em();
     $today = $this->localDateTime();
 		$pictures = $em->getRepository(Picture::class)->findBy(['day' => $today]);
+		$previous = $em->getRepository(Picture::class)->findPreviousOne();
+
+		$maxoffset = count($previous) - 1;
+		if($offset > $maxoffset){
+			$offset = $maxoffset;
+		}
+
 		if(sizeof($pictures) == 0) {
 			$pictures = $em->getRepository(Picture::class)->findValidatedOne();
 		}
-		$offset = sizeof($pictures) > 0 ? array_rand($pictures) : 0;
 
 		return $this->render('pages/index.html.twig', [
-			'picture' => sizeof($pictures) > 0 ? $pictures[$offset] : null
+			'picture' => $previous[$offset],
+			'offset' => $offset,
+			'maxoffset' => $maxoffset
 		]);
 	}
 
@@ -60,23 +69,6 @@ class DefaultController extends UtilsController
 		return $this->render('pages/submit.html.twig', [
 			'form' => $form->createView(),
 			'task' => 'submit'
-		]);
-	}
-	/**
-   * @Route("/picture-gallery/{offset}", name="picture-gallery", requirements={"offset":"\d+"})
-	 */
-	public function gallery(int $offset){
-		$em = $this->em();
-		$pictures = $em->getRepository(Picture::class)->findPreviousOne();
-		$maxoffset = count($pictures) - 1;
-		if($offset > $maxoffset){
-			$offset = $maxoffset;
-		}
-
-		return $this->render('pages/previous.html.twig', [
-			'picture' => sizeof($pictures) > 0 ? $pictures[$offset] : null,
-			'offset' => $offset,
-			'maxoffset' => $maxoffset
 		]);
 	}
 

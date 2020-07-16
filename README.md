@@ -52,10 +52,11 @@ And "Voilà" ! You can now access to the website here : [http://127.0.0.1:8000/]
 # How to Use
 
 Well it's pretty simple actually, here's how it all works:
-* Every day a picture selected for this day is displayed. If multiple pictures are set for the same day then one of them is displayed at a random fashion.
+* Every day a picture selected for this day is displayed.
 * Every one can submit a picture, but it won't be activated by default : An administrator need to access the administration section and pick a day for it (and validate it at the same time).
 * If a day has no picture selected for it then a random picture is randomly chosen from all the previous validated ones.
 * To access the administration page you need to go to : [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin), the login is 'admin' and the password is the one set previously in your '.env' file.
 * From the admin section you can see/sort/update/delete/choose a day for all the pictures uploaded on the website.
+* Only one picture can be set to the same date, if a date already taken is set for a picture then the previous one will be automatically unset.
 
 Enjoy !
