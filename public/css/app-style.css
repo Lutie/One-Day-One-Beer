@@ -37,6 +37,11 @@ h1 {
     min-height: 480px;
 }
 
+.table-responsive {
+    background-color: #FFF;
+    color: #000;
+}
+
 .modal-picture, .delay-picture, .update-picture {
     max-width:100%;
     max-height:100%;
